@@ -3,7 +3,7 @@ package com.easyweather.app.model;
 public class Province {
 	private int id;
 	private String provinceName;
-	private String ProvinceCode;
+	private String provinceCode;
 	
 	public int getId(){
 		return id;
@@ -22,10 +22,10 @@ public class Province {
 	}
 	
 	public String getProvinceCode() {
-		return ProvinceCode;
+		return provinceCode;
 	}
 	public void setProvinceCode(String provinceCode) {
-		this.ProvinceCode = provinceCode;
+		this.provinceCode = provinceCode;
 	}
 	
 

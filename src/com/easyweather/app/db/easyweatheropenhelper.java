@@ -4,16 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class easyweatheropenhelper extends SQLiteOpenHelper {
+public class EasyWeatherOpenHelper extends SQLiteOpenHelper {
+	String TAG = "CoolWeatherOpenHelper";
 	
-	public easyweatheropenhelper(Context context, String name,
-			CursorFactory factory, int version) {
-		super(context, name, factory, version);
-		// TODO Auto-generated constructor stub
-	}
- 
 	
+	
+
 	
 	//province±ÌΩ®±Ì”Ôæ‰
 	public static final String CREATE_PROVINCE = "create table Province ("
@@ -36,14 +34,33 @@ public class easyweatheropenhelper extends SQLiteOpenHelper {
 			+ "county_name text,"
 			+ "county_code text,"
 			+ "city_id integer) ";
+
+	
+	public EasyWeatherOpenHelper(Context context, String name,
+			CursorFactory factory, int version) {
+		super(context, name, factory, version);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
-	public void onCreate(SQLiteDatabase arg0) {
+	public void onCreate(SQLiteDatabase db) {
+		db.execSQL(CREATE_PROVINCE);
+		Log.i(TAG, "province created");
+		db.execSQL(CREATE_CITY);
+		Log.i(TAG, "city created");
+		db.execSQL(CREATE_COUNTY);
+		Log.i(TAG, "county created");
+		
+	}
+
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
+	
+	
 		
-	}
+	
 }

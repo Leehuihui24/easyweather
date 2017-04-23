@@ -3,34 +3,40 @@ package com.easyweather.app.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.easyweather.app.model.City;
-import com.easyweather.app.model.County;
-import com.easyweather.app.model.Province;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-public class easyweatherDB {
+import com.easyweather.app.model.City;
+import com.easyweather.app.model.County;
+import com.easyweather.app.model.Province;
+
+
+
+public class EasyWeatherDB {
+	String TAG = "CoolWeatherDB";
 	
-	public static final String DB_NAME = "easyweather";//定义数据库名
+	public static final String DB_NAME = "easy_weather";//定义数据库名
 	
 	public static final int VERSION = 1;//数据库版本
-	private static easyweatherDB easyweatherDB;
+	private static EasyWeatherDB easyWeatherDB;
 	private SQLiteDatabase db;
 	
-	private easyweatherDB(Context context){//构造方法私有化
-		easyweatheropenhelper dbHelper = new easyweatheropenhelper(context,DB_NAME, null, VERSION);
+	private EasyWeatherDB(Context context){//构造方法私有化
+		EasyWeatherOpenHelper dbHelper = new EasyWeatherOpenHelper(context,DB_NAME, null, VERSION);
+		Log.i(TAG, "dbHelper create success");
 		db = dbHelper.getWritableDatabase();
+		Log.i(TAG, "db create success");
 	}
 	
-	//获取easyweather实例
-	public synchronized static easyweatherDB getInstance (Context context){
-		if (easyweatherDB == null){
-			easyweatherDB = new easyweatherDB(context);
+	//获取easy weather实例
+	public synchronized static EasyWeatherDB getInstance (Context context){
+		if (easyWeatherDB == null){
+			easyWeatherDB = new EasyWeatherDB(context);
 		}
-		return easyweatherDB;
+		return easyWeatherDB;
 	}
 	
 	
@@ -61,9 +67,9 @@ public class easyweatherDB {
 				list.add(province);
 			}while (cursor.moveToNext());
 		}
-		if(cursor != null){
+		if(cursor != null)
 			cursor.close();
-		}return list;
+		return list;
 	}
 	
 	
@@ -95,9 +101,9 @@ public class easyweatherDB {
 				list.add(city);
 			}while (cursor.moveToNext());
 		}
-		if(cursor != null){
+		if(cursor != null)
 			cursor.close();
-		}return list;
+		return list;
 	}
 
 	
@@ -110,6 +116,7 @@ public class easyweatherDB {
 			ContentValues values = new ContentValues();
 			values.put("county_name",county.getCountyName());
 			values.put("county_code",county.getCountyCode());
+			values.put("city_id", county.getCityId());
 			db.insert("County", null, values);
 		}
 	}	
@@ -124,6 +131,8 @@ public class easyweatherDB {
 				county.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				county.setCountyName(cursor.getString(cursor.getColumnIndex("county_name")));
 				county.setCountyCode(cursor.getString(cursor.getColumnIndex("county_code")));
+				Log.d(TAG, cursor.getString(cursor.getColumnIndex("county_name"))+"hell");
+				Log.d(TAG, cursor.getString(cursor.getColumnIndex("county_code"))+"hell");
 				county.setCityId(cityId);
 				list.add(county);
 			}while (cursor.moveToNext());
