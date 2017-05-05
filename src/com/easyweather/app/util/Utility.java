@@ -50,7 +50,6 @@ public class Utility {
 				for (String c : allCities){
 					String[] array = c.split("\\|");
 					City city = new City();
-					
 					city.setCityCode(array[0]);
 					city.setCityName(array[1]);
 					city.setProvinceId(provinceId);//将解析出来的数据存到city表
@@ -74,6 +73,7 @@ public class Utility {
 						County county = new County();
 						
 						county.setCountyCode(array[0]);
+						Log.d(TAG, array[0]);
 						county.setCountyName(array[1]);
 						county.setCityId(cityId);//将解析出来的数据存到city表
 						easyWeatherDB.saveCounty(county);

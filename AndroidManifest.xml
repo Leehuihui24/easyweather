@@ -18,7 +18,7 @@
         
         
         <activity
-            android:name="com.example.easyweather.MainActivity"
+            android:name="com.easyweather.app.activity.ChooseAreaActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,10 +27,11 @@
             </intent-filter>
         </activity>
         
-        <service android:name=".service.AutoUpdateService"></service>
-        <receiver android:name=".receiver.AutoUpdateReceiver"></receiver>
+        <activity android:name="com.easyweather.app.activity.WeatherActivity"></activity>
+        <service android:name="com.easyweather.app.service.AutoUpdateService"></service>
+        <receiver android:name="com.easyweather.app.receiver.AutoUpdateReceiver"></receiver>
         
-        <activity android:name=".activity.WeatherActivity"></activity>
+        
         
     </application>
     

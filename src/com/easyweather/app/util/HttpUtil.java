@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class HttpUtil {
 	
-	public static void sendHttpRequest(final String address, final HttpCallbackListener httpCallbackListener){
+	public static void sendHttpRequest(final String address, final HttpCallbackListener listener){
 		new Thread(new Runnable(){
 			
 			public void run(){
@@ -21,24 +21,24 @@ public class HttpUtil {
 					connection.setRequestMethod("GET");
 					connection.setConnectTimeout(8000);
 					connection.setReadTimeout(8000);
-					InputStream in = connection.getInputStream();
-					BufferedReader reader = new BufferedReader (new InputStreamReader(in));
+					InputStream inputStream = connection.getInputStream();
+					BufferedReader reader = new BufferedReader (new InputStreamReader(inputStream));
 					StringBuilder response = new StringBuilder();
 					String line;
 					while((line = reader.readLine()) != null)
 						response.append(line);
 					Log.d("HttpUnil", response+"");
-					if(httpCallbackListener != null){
-						httpCallbackListener.onFinish(response.toString());//回调onFinish()方法
-					}
+					if(listener != null)
+						listener.onFinish(response.toString());//回调onFinish()方法
+					
 				}catch(Exception e){
-					if (httpCallbackListener != null){
-						httpCallbackListener.onError(e);//回调onError()方法
-					}
+					if (listener != null)
+						listener.onError(e);//回调onError()方法
+					
 				}finally{
-					if(connection != null){
+					if(connection != null)
 						connection.disconnect();
-					}
+					
 				}
 			}
 		}).start();

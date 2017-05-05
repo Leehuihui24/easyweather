@@ -228,3 +228,5 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	}
 
 }
+
+

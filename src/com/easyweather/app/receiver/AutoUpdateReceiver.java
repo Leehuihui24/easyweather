@@ -1,3 +1,4 @@
+/*
 package com.easyweather.app.receiver;
 
 import com.easyweather.app.service.AutoUpdateService;
@@ -17,3 +18,7 @@ public class AutoUpdateReceiver extends BroadcastReceiver {
 	}
 
 }
+
+
+
+*/

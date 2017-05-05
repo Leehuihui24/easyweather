@@ -3,7 +3,7 @@ package com.easyweather.app.model;
 public class County {
 	private int id;
 	private String countyName;
-	private String CountyCode;
+	private String countyCode;
 	private int cityId;
 	
 	public int getId() {
@@ -23,11 +23,11 @@ public class County {
 	}
 	
 	public String getCountyCode() {
-		return CountyCode;
+		return countyCode;
 	}
 	
 	public void setCountyCode(String countyCode) {
-		this.CountyCode = countyCode;
+		this.countyCode = countyCode;
 	}
 	
 	public int getCityId() {

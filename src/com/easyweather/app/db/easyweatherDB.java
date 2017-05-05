@@ -81,9 +81,10 @@ public class EasyWeatherDB {
 	public void saveCity (City city){
 		if (city != null){
 			ContentValues values = new ContentValues();
-			values.put("province_name",city.getCityName());
-			values.put("province_code",city.getCityCode());
-			db.insert("Province", null, values);
+			values.put("city_name",city.getCityName());
+			values.put("city_code",city.getCityCode());
+			values.put("province_id", city.getProvinceId());
+			db.insert("City", null, values);
 		}
 	}
 

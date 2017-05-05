@@ -29,10 +29,10 @@ public class EasyWeatherOpenHelper extends SQLiteOpenHelper {
 	 
 	
 	//county±ÌΩ®±Ì”Ôæ‰
-	public static final String CREATE_COUNTY = "create table Country ("
-			+ "id integer primary key autoincrement"
-			+ "county_name text,"
-			+ "county_code text,"
+	public static final String CREATE_COUNTY = "create table County ("
+			+ "id integer primary key autoincrement,"
+			+ "county_name text, "
+			+ "county_code text, "
 			+ "city_id integer) ";
 
 	
