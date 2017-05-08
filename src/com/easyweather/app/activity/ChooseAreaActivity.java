@@ -64,6 +64,7 @@ public class ChooseAreaActivity extends Activity {
 	// ÊÇ·ñ´Óweather activityÌø×ª
 	private boolean isFromWeatherActivity;
 
+	@SuppressWarnings("unused")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,6 +72,16 @@ public class ChooseAreaActivity extends Activity {
 				"from_weather_activity", false);
 		Log.d(TAG, "isFromWeatherActivity=" + isFromWeatherActivity);
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ChooseAreaActivity.this);
+		/*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (prefs.getBoolean("city_selected",false)){
+			Intent intent = new Intent(this, WeatherActivity.class);
+			startActivity(intent);
+			finish();
+			return;
+		}*/
+		
+		
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.choose_area);
 		listView = (ListView) findViewById(R.id.list_view);
@@ -94,7 +105,7 @@ public class ChooseAreaActivity extends Activity {
 					Log.d(TAG, countyCode + "h");
 					Intent intent = new Intent(ChooseAreaActivity.this,
 							WeatherActivity.class);
-					intent.putExtra("countyCode", countyCode);
+					intent.putExtra("county_code", countyCode);
 					startActivity(intent);
 					finish();
 				}

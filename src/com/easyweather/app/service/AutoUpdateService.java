@@ -1,4 +1,4 @@
-/*
+
 package com.easyweather.app.service;
 
 import com.easyweather.app.receiver.AutoUpdateReceiver;
@@ -62,4 +62,3 @@ public class AutoUpdateService extends Service {
 }
 
 
-*/

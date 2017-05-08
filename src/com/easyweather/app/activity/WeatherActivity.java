@@ -1,5 +1,6 @@
 package com.easyweather.app.activity;
 
+import com.easyweather.app.service.AutoUpdateService;
 import com.easyweather.app.util.HttpCallbackListener;
 import com.easyweather.app.util.HttpUtil;
 import com.easyweather.app.util.Utility;
@@ -23,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class WeatherActivity extends Activity implements OnClickListener{
-	private static final Intent intent = null;
+	
 	String TAG = "WeatherActivity";
 	//上次按back键的系统时间
 	private long lastBackTime = 0;
@@ -38,9 +39,9 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	//显示天气描述
 	private TextView weatherdespText;
 	//显示气温1
-	private TextView tempText1;
+	private TextView temp1Text;
 	//显示气温2
-	private TextView tempText2;
+	private TextView temp2Text;
 	//显示当前日期
 	private TextView currentDateText;
 	
@@ -60,8 +61,8 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		cityNameText = (TextView) findViewById(R.id.city_name);
 		publishText = (TextView) findViewById(R.id.publish_text);
 		weatherdespText = (TextView) findViewById(R.id.weather_desp);
-		tempText1 = (TextView) findViewById(R.id.temp1);
-		tempText2 = (TextView) findViewById(R.id.temp2);
+		temp1Text = (TextView) findViewById(R.id.temp1);
+		temp2Text = (TextView) findViewById(R.id.temp2);
 		currentDateText = (TextView) findViewById(R.id.current_date);
 		switchCity = (Button) findViewById(R.id.switch_city);
 		refreshWeather = (Button) findViewById(R.id.refresh_weather);
@@ -91,14 +92,14 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		cityNameText.setText(sharedPreferences.getString("city_name", ""));
-		tempText1.setText(sharedPreferences.getString("temp1", ""));
-		tempText2.setText(sharedPreferences.getString("temp2", ""));
+		temp1Text.setText(sharedPreferences.getString("temp1", ""));
+		temp2Text.setText(sharedPreferences.getString("temp2", ""));
 		weatherdespText.setText(sharedPreferences.getString("weather_Desp", ""));
 		publishText.setText("今天" + sharedPreferences.getString("publish_time", "")+ "发布");
 		currentDateText.setText(sharedPreferences.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
-		//Intent intent = new Intent(this, AutoUpdateService.class);
+		Intent intent = new Intent(this, AutoUpdateService.class);
 		startService(intent);
 		
 	}
